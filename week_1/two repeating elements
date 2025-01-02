@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void twoRepeating(int A[], int n) {
+    int* hashTable = (int*)calloc(n + 1, sizeof(int));  
+    for (int i = 0; i < n; i++) {
+        hashTable[A[i]]++;
+    }
+    for (int i = 1; i < n; i++) {
+        if (hashTable[A[i]] == 2)
+            printf("%d ", A[i]);
+        }
+    }   
+    free(hashTable);
+}
+int main() {
+    int n;
+    printf("number of elements in the array: ");
+    scanf("%d", &n);
+    int A[n+2];
+    printf("Enter the elements of the array: ");
+    for (int i = 0; i < n+2; i++) {
+        scanf("%d", &A[i]);
+    }
+    twoRepeating(A, n);
+    return 0;
+}

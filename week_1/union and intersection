@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void Union(int a[], int size1, int b[], int size2) {
+    int result[size1 + size2];
+    int k = 0;
+
+    for (int i = 0; i < size1; i++) {
+        int found = 0;
+        for (int j = 0; j < k; j++) {
+            if (result[j] == a[i]) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            result[k++] = a[i];
+        }
+    }
+
+    for (int i = 0; i < size2; i++) {
+        int found = 0;
+        for (int j = 0; j < k; j++) {
+            if (result[j] == b[i]) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            result[k++] = b[i];
+        }
+    }
+
+    printf("Union: ");
+    for (int i = 0; i < k; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+}
+
+void Intersection(int a[], int size1, int b[], int size2) {
+    int result[size1 > size2 ? size1 : size2];
+    int k = 0;
+
+    for (int i = 0; i < size1; i++) {
+        for (int j = 0; j < size2; j++) {
+            if (a[i] == b[j]) {
+                int found = 0;
+                for (int l = 0; l < k; l++) {
+                    if (result[l] == a[i]) {
+                        found = 1;
+                        break;
+                    }
+                }
+                if (!found) {
+                    result[k++] = a[i];
+                }
+            }
+        }
+    }
+
+    printf("Intersection: ");
+    for (int i = 0; i < k; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int size1, size2, choice;
+    printf("\nChoose an operation:\n");
+    printf("1. Union\n");
+    printf("2. Intersection\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1:
+            printf("Number of elements in the first array: ");
+            scanf("%d", &size1);
+            int a[size1];
+            printf("Elements of the first array: ");
+            for (int i = 0; i < size1; i++) {
+                scanf("%d", &a[i]);
+            }
+            printf("Number of elements in the second array: ");
+            scanf("%d", &size2);
+            int b[size2];
+            printf("Elements of the second array: ");
+            for (int i = 0; i < size2; i++) {
+                scanf("%d", &b[i]);
+            }
+            Union(a, size1, b, size2);
+            break;
+        case 2:
+            printf("Number of elements in the first array: ");
+            scanf("%d", &size1);
+            int a[size1];
+            printf("Elements of the first array: ");
+            for (int i = 0; i < size1; i++) {
+                scanf("%d", &a[i]);
+            }
+            printf("Number of elements in the second array: ");
+            scanf("%d", &size2);
+            int b[size2];
+            printf("Elements of the second array: ");
+            for (int i = 0; i < size2; i++) {
+                scanf("%d", &b[i]);
+            }
+            Intersection(a, size1, b, size2);
+            break;
+        default:
+            printf("Invalid choice!\n");
+            break;
+    }
+
+    return 0;
+}
