@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int Max_1(int matrix[4][4], int rows, int colm) {
+    int maxRowIndex = -1, maxCount = 0;
+    for (int i = 0; i < rows; i++) {
+        int count = 0;
+        for (int j = 0; j < colm; j++) {
+            if (matrix[i][j] == 1) {
+                count++;
+            }
+        }
+        if (count > maxCount) {
+            maxCount = count;
+            maxRowIndex = i;
+        }
+    }
+    return maxRowIndex;
+}
+
+int main() {
+    int rows, colm;
+    printf(" num of rows and columns: ");
+    scanf("%d %d", &rows, &colm);
+    int matrix[rows][colm];
+    printf("elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < colm; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    int result = Max_1(matrix, rows, colm);
+    if (result != -1) {
+        printf("max num of 1s is: %d\n", result);
+    } else {
+        printf("No 1s.\n");
+    }
+    return 0;
+}
