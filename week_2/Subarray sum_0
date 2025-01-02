@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+int subArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        int sum = arr[i];
+        if (sum == 0) {
+            return true;
+        }
+        for (int j = i + 1; j < n; j++) {
+            sum += arr[j];
+            if (sum == 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+int main() {
+    int n;
+    printf("elements in the array: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("elements of the array: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    if (subArray(arr, n)) {
+        printf("subarray with 0 sum\n");
+    } else {
+        printf("No subarray \n");
+    }
+
+    return 0;
+}
