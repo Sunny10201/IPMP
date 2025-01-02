@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+int minAbsSumPair(int arr[], int n) {
+    if (n < 2) {
+        printf("at least two elements.\n");
+        return 0;
+    }
+    int res = arr[0] + arr[1]; 
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int sum = arr[i] + arr[j];
+            if (abs(sum) < abs(res)) {
+                res = sum; 
+            }
+        }
+    }
+    return res;
+}
+int main() {
+    int n;
+    printf("number of elements: ");
+    scanf("%d", &n);
+    if (n < 2) {
+        printf("at least two elements.\n");
+        return 0;
+    }
+    int arr[n];
+    printf("elements of the array: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    int result = minAbsSumPair(arr, n);
+    printf("sum pair value is: %d\n", result);
+    return 0;
+}
